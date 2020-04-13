@@ -1,22 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 
 import TodoList from "./components/TodoList";
 import TodoForm from "./components/TodoForm";
 
-class App extends React.Component {
+export default function () {
   // you will need a place to store your state in this component.
   // design `App` to be the parent component of your application.
   // this component is going to take care of state, and any change handlers you need to work with your state
 
-  constructor() {
-    super();
-    this.state = {
-      item: "",
-      todoList: [],
-    };
-  }
+  const [item, setItem] = useState("");
+  const [todoList, setTodoList] = useState([]);
 
-  addTask = (event, inputName) => {
+  const addTask = (event, inputName) => {
     event.preventDefault();
 
     const newTask = {
@@ -25,22 +20,22 @@ class App extends React.Component {
       completed: false,
     };
 
-    this.setState({
-      todoList: [...this.state.todoList, newTask],
+    setTodoList({
+      todoList: [...todoList, newTask],
     });
   };
 
-  handleSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    this.setState({
+    setItem({
       item: "",
     });
     this.addTask(event, this.state.item);
   };
 
-  toggleItem = (itemId) => {
-    this.setState({
-      todoList: this.state.todoList.map((item) => {
+  const toggleItem = (itemId) => {
+    setItem({
+      todoList: todoList.map((item) => {
         if (itemId === item.id) {
           return {
             ...item,
@@ -52,31 +47,27 @@ class App extends React.Component {
     });
   };
 
-  clearCompleted = (event) => {
+  const clearCompleted = (event) => {
     event.preventDefault();
     // console.log("Cleared");
-    this.setState({
-      todoList: this.state.todoList.filter((todo) => !todo.completed),
+    setTodoList({
+      todoList: todoList.filter((todo) => !todo.completed),
     });
   };
 
-  handleChange = (event) => {
-    this.setState({ item: event.target.value });
+  const handleChange = (event) => {
+    setItem({ item: event.target.value });
   };
 
-  render() {
-    return (
-      <div>
-        <TodoList todoList={this.state.todoList} toggleItem={this.toggleItem} />
-        <TodoForm
-          clearCompleted={this.clearCompleted}
-          handleChange={this.handleChange}
-          handleSubmit={this.handleSubmit}
-          todo={this.state.item}
-        />
-      </div>
-    );
-  }
+  return (
+    <div>
+      <TodoList todoList={todoList} toggleItem={toggleItem} />
+      <TodoForm
+        clearCompleted={clearCompleted}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+        todo={item}
+      />
+    </div>
+  );
 }
-
-export default App;
