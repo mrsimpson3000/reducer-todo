@@ -3,19 +3,19 @@ import React, { useState, useReducer } from "react";
 export const initialState = [
   {
     task: "Learn about Reducers",
-    id: Date.now(),
+    id: 1,
     completed: false,
   },
 
   {
     task: "Implement Reducers",
-    id: Date.now(),
+    id: 2,
     completed: false,
   },
 
   {
     task: "Eat Dinner with the wife on our anniversary",
-    id: Date.now(),
+    id: 3,
     completed: false,
   },
 ];
