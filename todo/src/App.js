@@ -1,72 +1,70 @@
-import React, { useState } from "react";
-
+import React, { useReducer } from "react";
 import TodoList from "./components/TodoList";
 import TodoForm from "./components/TodoForm";
+import { initialState, reducer } from "./reducers/reducer";
 
-export default function () {
-  // you will need a place to store your state in this component.
-  // design `App` to be the parent component of your application.
-  // this component is going to take care of state, and any change handlers you need to work with your state
+export default function App() {
+  // const [item, setItem] = useState("");
+  // const [todoList, setTodoList] = useState([]);
 
-  const [item, setItem] = useState("");
-  const [todoList, setTodoList] = useState([]);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const addTask = (event, inputName) => {
     event.preventDefault();
 
-    const newTask = {
-      task: inputName,
-      id: Date.now(),
-      completed: false,
-    };
+    // const newTask = {
+    //   task: inputName,
+    //   id: Date.now(),
+    //   completed: false,
+    // };
 
-    setTodoList({
-      todoList: [...todoList, newTask],
-    });
+    // setTodoList({
+    //   todoList: [...todoList, newTask],
+    // });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setItem({
-      item: "",
-    });
-    this.addTask(event, this.state.item);
+    // setItem({
+    //   item: "",
+    // });
+    // this.addTask(event, item);
   };
 
   const toggleItem = (itemId) => {
-    setItem({
-      todoList: todoList.map((item) => {
-        if (itemId === item.id) {
-          return {
-            ...item,
-            completed: !item.completed,
-          };
-        }
-        return item;
-      }),
-    });
+    // setItem({
+    //   todoList: todoList.map((item) => {
+    //     if (itemId === item.id) {
+    //       return {
+    //         ...item,
+    //         completed: !item.completed,
+    //       };
+    //     }
+    //     return item;
+    //   }),
+    // });
   };
 
   const clearCompleted = (event) => {
     event.preventDefault();
     // console.log("Cleared");
-    setTodoList({
-      todoList: todoList.filter((todo) => !todo.completed),
-    });
+    // setTodoList({
+    //   todoList: todoList.filter((todo) => !todo.completed),
+    // });
   };
 
   const handleChange = (event) => {
-    setItem({ item: event.target.value });
+    // setItem({ item: event.target.value });
   };
 
   return (
     <div>
-      <TodoList todoList={todoList} toggleItem={toggleItem} />
+      <TodoList state={state} dispatch={dispatch} />
       <TodoForm
         clearCompleted={clearCompleted}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
-        todo={item}
+        // todo={item}
       />
     </div>
   );
