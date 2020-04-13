@@ -21,6 +21,7 @@ export default function TodoForm(props) {
             type: "ADD_TASK",
             payload: { task: item },
           });
+          setItem("");
         }}
       >
         Add Todo

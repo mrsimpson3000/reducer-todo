@@ -25,8 +25,8 @@ export const reducer = (state, action) => {
         ...state,
         {
           task: action.payload.task,
-          completed: false,
           id: Date.now(),
+          completed: false,
         },
       ];
     case "TOGGLE_TASK":

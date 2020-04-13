@@ -22,13 +22,13 @@ export default function App() {
   // });
   // };
 
-  // const handleSubmit = (event) => {
-  // event.preventDefault();
-  // setItem({
-  //   item: "",
-  // });
-  // this.addTask(event, item);
-  // };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // setItem({
+    //   item: "",
+    // });
+    // this.addTask(event, item);
+  };
 
   // const toggleItem = (itemId) => {
   // setItem({
@@ -55,10 +55,7 @@ export default function App() {
   return (
     <div>
       <TodoList state={state} dispatch={dispatch} />
-      <TodoForm
-        dispatch={dispatch}
-        // handleSubmit={handleSubmit}
-      />
+      <TodoForm dispatch={dispatch} handleSubmit={handleSubmit} />
     </div>
   );
 }
