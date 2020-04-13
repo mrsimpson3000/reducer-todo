@@ -1,5 +1,3 @@
-import React, { useState, useReducer } from "react";
-
 export const initialState = [
   {
     task: "Learn about Reducers",
