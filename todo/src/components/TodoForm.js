@@ -26,7 +26,16 @@ export default function TodoForm(props) {
       >
         Add Todo
       </button>
-      <button onClick={props.clearCompleted}>Clear Completed</button>
+      <button
+        onClick={() => {
+          props.dispatch({
+            type: "CLEAR_COMPLETED",
+            payload: { completed: true },
+          });
+        }}
+      >
+        Clear Completed
+      </button>
     </form>
   );
 }
